@@ -1,6 +1,7 @@
 import os
 import serial
-
+import sys
+import time
 os.environ['SDL_VIDEODRIVER'] = 'dummy'
 import pygame
 
@@ -24,11 +25,25 @@ snd_j = pygame.mixer.Sound('./piano/G-min7.wav')
 s = serial.Serial(port='/dev/ttyACM0', baudrate=9600, timeout=1,
                        parity=serial.PARITY_EVEN, rtscts=1)
 
+off_time = 0.0
 
 while True:
     line = s.readline()
     line = line.strip()
     print line
+
+    if line == 'press 32':
+       print 'off initiialized...'
+       off_time = time.time()
+
+    if line == 'release 32':
+        if time.time() - off_time > 5:
+          print 'OFF NOW'
+          os.system("shutdown -h now")
+          sys.exit(0)
+        else:
+          off_time = 0.0
+          print '...off cancelled'
 
     if line == 'press 215':
         snd_i.play()
