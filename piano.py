@@ -19,7 +19,7 @@ snd_g = pygame.mixer.Sound('./piano/Dmin7.wav')
 snd_h = pygame.mixer.Sound('./piano/E-min7.wav')
 snd_i = pygame.mixer.Sound('./piano/Emin7.wav')
 snd_j = pygame.mixer.Sound('./piano/G-min7.wav')
-snd_k = pygame.mixer.Sound('./piano/Gmin7.wav')
+#snd_k = pygame.mixer.Sound('./piano/Gmin7.wav')
 
 s = serial.Serial(port='/dev/ttyACM0', baudrate=9600, timeout=1,
                        parity=serial.PARITY_EVEN, rtscts=1)
